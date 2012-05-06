@@ -1,0 +1,6 @@
+Leaves is a WordPress plugin that can turn any post into a pretty, jQuery/booklet-powered page-turning eBook.
+
+Licensed under GPL2. Be nice.
+
+Developed against (and can be assumed to requre) jQuery.
+The page animations are powered by booklet, which is GPL/MIT licensed too and is by the excellent gent at builtbywill.com
