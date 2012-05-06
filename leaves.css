@@ -1,0 +1,153 @@
+/* Leaves */
+
+#chapterheaders {
+	font-family: 'GoudyBookletter1911Regular';
+	height: 60px;
+	display: block;
+	font-size: 36px;
+}
+
+
+#inner-1 {
+	padding-bottom: 60px;
+}
+
+#chapterheaders span {
+	font-size: 22px;
+}
+
+
+.leaves-load {
+	background-color: #3B7A97;
+	color: white;
+	width: 400px;
+	height: 120px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.leaves-pages-rendering, .leaves-pages{
+font-family: 'Georgia','Times New Roman',serif;
+font-size: 15px;
+color: #1b1613;
+width: 360px;
+height: 580px;
+padding: 0px;
+line-height: 20px;
+text-align: justify;
+position: relative;
+
+}
+
+.leaves-pages{
+
+
+}
+
+.leaves-pages hr {
+	margin-top: 20px;
+	width: 75%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+.b-menu {
+	height: 0px;
+	overflow: visible;
+	position: relative;
+}
+
+.b-menu div{
+	position: absolute;
+	right: 1px;
+	top: -33px;
+}
+
+.glyph {
+	border: 1px dotted darkred;
+	color: darkred;
+	display: inline-block;
+	position: relative;
+	top: 3px;
+	font-family: 'GoudyBookletter1911Regular';
+	font-size: 28px;
+	height: 26px;
+	line-height: 28px;
+	margin-right: 1px;
+}
+
+.bigquote {
+color: darkred;
+float: left;
+font-size: 22px;
+margin-left: -8px;
+position: relative;
+top: 2px;
+}
+
+.pagehelp-holder {
+	display: none;
+}
+
+div.pagehelp {
+	height: 0px;
+	width: 0px;
+	position: relative;
+	top: 4px;
+	left: 680px;
+	overflow: visible;
+}
+
+.pagehelp-button {
+	height: 32px;
+	width: 32px;
+	background-image: url('/theme/helpicon-reg.png');
+}
+
+div.pagehelp-body {
+	position: relative;
+	top: -175px;
+	left: -75px;
+}
+
+div.pagehelp-bg {
+	background-image: url('/theme/tooltipbg.png');
+	position: relative;
+	width: 300px;
+	padding-right: 0px;
+	padding: 10px;
+	height: 120px;
+	margin-bottom: -33px;
+}
+
+.pagehelp-bg span {
+	background-color: rgba(0,0,0,0.5);
+	color: white;
+}
+
+.pagehelp-pointer {
+	margin-left: 30px;
+}
+
+#chapterlink {
+	position: absolute;
+	bottom: 100px;
+	left: 30px;
+}
+
+#chapterlink a {
+	background-color: rgba(59,122,151,0.7);
+	color: white;
+	margin-left: 5px;
+	position: relative;
+	top: 10px;
+	padding: 5px;
+}
+
+#chapterlink a:hover {
+	background-color: rgba(59,122,151,0.4);
+	color: white;
+	text-decoration: underline;
+	padding: 5px;
+}
