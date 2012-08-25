@@ -38,6 +38,7 @@ function leavesDrawMenu(){
 	
 	  
 	$leaves_chapterwait_text = get_option('leaves_chapterwait_text');
+	$leaves_finalpage_content = get_option('leaves_finalpage_content');
 	$cats = get_option("leaves_categories");
 	
 	if ($_POST[leaves_categories]){
@@ -51,6 +52,12 @@ function leavesDrawMenu(){
 		update_option('leaves_chapterwait_text',$_POST[leaves_chapterwait_text]);
 		$leaves_chapterwait_text = $_POST[leaves_chapterwait_text];
 	}
+	
+	if ($_POST[leaves_finalpage_content]){
+		update_option('leaves_finalpage_content',$_POST[leaves_finalpage_content]);
+		$leaves_finalpage_content = $_POST[leaves_finalpage_content];
+	}
+	
 	echo("<style type='text/css'>
 		.leaves-admin {padding: 5px; margin-bottom: 10px; width: 500px; background-color: rgba(20,200,20,0.2);}
 		.leaves-admin ul {margin-left: 10px;}
@@ -81,8 +88,16 @@ function leavesDrawMenu(){
 			<h3>Chapter-ends</h3>
 			At the end of each chapter there is a link to the next chapter, unless there is no following chapter. Customize that chapterwait text here.
 			<br><br>
-			<textarea name='leaves_chapterwait_text'>$leaves_chapterwait_text</textarea>
+			<textarea name='leaves_chapterwait_text'>".stripslashes($leaves_chapterwait_text)."</textarea>
 		</div>
+		
+		<div class='leaves-admin'>
+			<h3>Last page content</h3>
+			You may add content to be placed on the final page, immediately before the Next Chapter button. HTML/JavaScript is okay, PHP won't work.
+			<br><br>
+			<textarea name='leaves_finalpage_content'>".stripslashes($leaves_finalpage_content)."</textarea>
+		</div>
+		
 		
 		<p class='submit'>
 		<input type=\"submit\" name=\"Submit\" class=\"button-primary\" value=\"Save\" />
@@ -117,7 +132,8 @@ function leavesCss(){
 }
 
 function leavesMarkup(){
-	$leaves_chapterwait_text = get_option('leaves_chapterwait_text');
+	$leaves_chapterwait_text = stripslashes(get_option('leaves_chapterwait_text'));
+	$leaves_finalpage_content= stripslashes(get_option('leaves_finalpage_content'));
 	$chapternum = get_post_custom();
 	$chaptertitle = get_the_title();
 	$chapternumeral = romanNumerals($chapternum['chapternum'][0]);
@@ -130,7 +146,7 @@ function leavesMarkup(){
 	next_post_link('%link','%title',TRUE,'');
 	$nextpostlink = ob_get_contents();
 	ob_end_clean();
-
+	
 	if (!$nextpostlink) {
 		$nextpostlink = "<i style='color: gray'>$leaves_chapterwait_text</i>";
 	}
@@ -160,6 +176,11 @@ function leavesMarkup(){
 				<span id='chaptertitle'>
 					$chaptertitle
 				</span>
+				
+				<span id='LeavesFinalPageContent'>
+					$leaves_finalpage_content
+				</span>
+				
 				<span id='chapterlink'>
 					Next chapter:<br>
 					$nextpostlink
@@ -182,9 +203,11 @@ function leavesScripts(){
 							}
 					
 							var postid = $('.post').attr('id').substring(5);
-						
-							var nextlink = $('#chapterlink');
-							$('#chapterlink').remove();
+							
+							var AfterHeight = $('#chapterlink').height() + $('#LeavesFinalPageContent').height();
+							var nextlink = $('#chapterlink').remove();
+							
+							var LeavesFinalPageContent = $('#LeavesFinalPageContent').remove();
 						
 							//remove the more tag, it screws things up
 							$('#more-'+postid).replaceWith('<hr>');
@@ -324,11 +347,14 @@ function leavesScripts(){
 						//add in the chapter linkage
 						var curHeight = $('#inner-'+curPage).innerHeight();
 					
-						if (curHeight > 450) {
+						if (curHeight > AfterHeight) {
 							curPage++;
 							$('#b-load').append(\"<div id='leaves-page-\"+curPage+\"' class='leaves-pages'><div id='inner-\"+curPage+\"'></div></div>\");
 						}
-					
+						
+						$(\".leaves-pages\").addClass('leaves-pages-complete');
+						
+						$(\"#inner-\"+curPage).append(LeavesFinalPageContent);
 						$(\"#inner-\"+curPage).append(nextlink);
 					
 						//initialize book!

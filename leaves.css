@@ -44,6 +44,10 @@ position: relative;
 
 }
 
+.leaves-pages-complete div:first-child {
+	height: 100%;
+}
+
 .leaves-pages hr {
 	margin-top: 20px;
 	width: 75%;
@@ -150,4 +154,13 @@ div.pagehelp-bg {
 	color: white;
 	text-decoration: underline;
 	padding: 5px;
+}
+
+#leaves-book {
+	z-index: 25;
+}
+
+#LeavesFinalPageContent{
+	position: absolute;
+	bottom: 160px;
 }
